@@ -10,7 +10,6 @@ const PokemonList = () => {
      const data = await res.json()
  
      setLoadMore(data.next)
- 
      function createPokemonObject(results)  {
        results.forEach( async pokemon => {
          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
