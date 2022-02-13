@@ -13,43 +13,67 @@ code {
 }
 
 .rock {
-  background-color: rgb(148, 81, 81);
+  background-color: rgba(102, 57, 57, 0.459);
+}
+
+.fighting {
+  background-color: rgba(230, 75, 3, 0.486);
+}
+
+.dragon {
+  background-color: rgba(33, 165, 226, 0.342);
+}
+
+.dark {
+  background-color: rgba(0, 0, 0, 0.432);
+}
+
+.psychic {
+  background-color: rgba(255, 0, 128, 0.363);
 }
 
 .ghost {
-  background-color: rgb(247, 247, 247);
+  background-color: rgba(24, 0, 112, 0.37);
 }
 
 .electric {
-  background-color: rgb(255, 255, 161);
+  background-color: rgba(238, 238, 0, 0.377);
 }
 
 .bug {
-  background-color: #F6D6A7;
+  background-color: #00531277;
 }
 
 .poison {
-  background-color: #e0a7f6;
+  background-color: #8d00c46e;
 }
 
 .normal {
-  background-color: #F4F4F4;
+  background-color: #7c2c5b70;
 }
 
 .fairy {
-  background-color: rgba(255, 192, 203, 0.863);
+  background-color: rgba(238, 0, 147, 0.466);
 }
 
 .fire {
-  background-color: #FBE3DF;
+  background-color: #ff000062;
 }
 
 .grass {
-  background-color: #E2F9E1;
+  background-color: #08aa025d;
 }
 
 .water {
-  background-color: #E0F1FD;
+  background-color: #007bd36c;
+}
+
+.steel {
+  background-color: #66856e63;
+}
+
+.flying{
+  background-color: #3e4fbe57;
 }
 
 .app-contaner {
@@ -57,7 +81,7 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+
 }
 
 .pokemon-container {
@@ -92,7 +116,7 @@ code {
   transform: scale(1.1);
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
   z-index: 3;
-  border-color: #007bff !important;
+  border-color: #deeeff !important;
   cursor: pointer;
 }
 
@@ -187,17 +211,40 @@ h3 {
 }
 
 .pokemon-detail {
-  display: flex;
-  flex-direction: column;
+  
+  display: grid;
+  
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
   margin: 0.3rem;
   border: 1px solid #efefef;
   border-radius: 0.2rem;
-  min-width: 160px;
+  min-width: 100vw;
   text-align: center;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
   
 }
 
+.pokemon-detail{
+
+}
+
+.mini-type{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0.3rem;
+  border: 1px solid #efefef;
+  border-radius: 0.5rem;  
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
+  color: white;
+  width: max-content;
+}
+
+ul {
+  list-style-type: none;
+}

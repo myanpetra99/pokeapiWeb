@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { ProgressBar } from 'react-bootstrap'
 
 const PokemonDetails = () => {
   const [pokemonName, setPokemonName] = useState('MissingNo')
@@ -23,42 +24,47 @@ const PokemonDetails = () => {
     setPokemonStats(data.stats)
     setPokemonWeight(data.weight)
     setPokemonHeight(data.height)
-    setCardClass(data.types[0].type.name+' pokemon-detail ')
-    
-
+    setCardClass(data.types+ ' pokemon-detail ')
   }
+
+  
 
   useEffect(() => {
     getPokemon()
   }, [])
-  
+
   return (
     <div className={cardClass}>
+      <div className='header'>
       <h1>{pokemonName}</h1>
       <img src={pokemonImage} alt={pokemonName} />
+      <ul className={pokemonTypes}>
+        {pokemonTypes.map(({ type }) => (
+          <li key={type.name} className={type.name + ' mini-type'}>{type.name}</li>
+        ))}
+      </ul>
+      </div>
       <h2>Abillities</h2>
       <ul>
         {pokemonAbillities.map(({ ability }) => (
-
           <li key={ability.name}>{ability.name}</li>
         ))}
       </ul>
-      <h2>Types</h2>
-      <ul>
-        {pokemonTypes.map(({ type }) => (
-          <li key={type.name}>{type.name}</li>
-        ))}
-      </ul>
+     
       <h2>Stats</h2>
       <ul>
         {pokemonStats.map(({ base_stat, stat }) => (
-          <li key={stat.name}>{stat.name} : {base_stat}</li>
+          <li key={stat.name}>
+            {stat.name} : <ProgressBar now={base_stat} />
+          </li>
         ))}
       </ul>
+     
       <h2>Weight</h2>
       <p>{pokemonWeight}</p>
       <h2>Height</h2>
       <p>{pokemonHeight}</p>
+      <button>Catch</button>
     </div>
   )
 }

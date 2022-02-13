@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import PokemonCard from './PokemonCard'
+import { useNavigate } from 'react-router'
 
-const PokemonList = () => {
-    const[allPokemons, setAllPokemons] = useState([])
-    const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
- 
+
+const MyPokemonList = () => {
+    const[allPokemons, setAllPokemons] = useState([{}])
+    const navigate = useNavigate();
    const getAllPokemons = async () => {
-     const res = await fetch(loadMore)
-     const data = await res.json()
- 
-     setLoadMore(data.next)
+     const data = localStorage.getItem("pokemon")
      function createPokemonObject(results)  {
        results.forEach( async pokemon => {
-         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-         let data = null
-         if (res){data =  await res.json()}
-
          setAllPokemons( currentList => [...currentList, data])
          await allPokemons.sort((a, b) => a.id - b.id)
        })
-       
      }
      
      createPokemonObject(data.results)
@@ -32,20 +25,24 @@ const PokemonList = () => {
   return(
     <div className="pokemon-container">
     <div className="all-container">
-      {allPokemons? allPokemons.map( (pokemonStats, index) => 
+      {allPokemons.length > 1 ? allPokemons.map( (pokemonStats, index) => 
         <PokemonCard
           key={index}
           id={pokemonStats.id}
           image={pokemonStats.sprites.other.dream_world.front_default}
           name={pokemonStats.name}
           type={pokemonStats.types[0].type.name}
-        />): "U dont have any pokemon, please catch some!"}
+        />): <div>
+            <h1>U dont have any pokemon, please catch some!</h1>
+            <a onClick={()=>navigate('/',{replace: true})}><button>Search for pokemon</button></a> 
+        
+        </div>}
       
     </div>
-      <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
+  
   </div>
   )
  
 }
 
-export default PokemonList
+export default MyPokemonList
