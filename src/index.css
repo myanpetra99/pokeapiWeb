@@ -262,3 +262,14 @@ a, u{
   text-decoration: none !important; 
   color: black !important;
 }
+
+.btn-action{
+  background-color: #ee1010;
+  color: white;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  min-width: 5em;
+}

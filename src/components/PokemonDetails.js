@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
 
+
+
 const PokemonDetails = () => {
+
   const [pokemonName, setPokemonName] = useState('MissingNo')
   const [pokemonAbillities, setPokemonAbillities] = useState([])
   const [pokemonImage, setPokemonImage] = useState('')
@@ -14,6 +17,34 @@ const PokemonDetails = () => {
 
   const { id } = useParams()
 
+  const currentPokemon ={
+    "name": pokemonName
+  }
+
+  function catchPokemon () {
+    const localPokemon = JSON.parse(localStorage.getItem("pokemon") || "[]");
+  
+    if(Math.random() < 0.5){
+     
+      let pokemonName = prompt('Successfuly Caught! Give this pokemon a nickname')
+      while (true){
+        if(localPokemon.find(pokemon => pokemon.nickname === pokemonName)|| pokemonName === null){
+          alert('You already have this pokemon'||'You must enter a nickname')
+          pokemonName = prompt('Give this pokemon a different nickname!')
+      }else{
+        break
+      }
+    }
+        currentPokemon.nickname = pokemonName
+        localPokemon.push(currentPokemon);
+        localStorage.setItem("pokemon", JSON.stringify(localPokemon));
+        alert('Successfully caught')
+      }
+    else{
+      alert('You failed to catch the pokemon')
+    }
+  }
+  
   const getPokemon = async () => {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     const data = await res.json()
@@ -64,7 +95,7 @@ const PokemonDetails = () => {
       <p>{pokemonWeight}</p>
       <h2>Height</h2>
       <p>{pokemonHeight}</p>
-      <button>Catch</button>
+      <button className='btn-action' onClick={() => catchPokemon()}>Catch</button>
     </div>
   )
 }

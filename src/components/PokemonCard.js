@@ -1,17 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
-const PokemonCard = ({ id, image, name, type, _callback }) => {
+const PokemonCard = ({ id, image, name, type, nickname, canRelease, _callback }) => {
   const cardClass = type + ' thumb-container'
+
+
+  function releasePokemon (nickname){
+    let currentPokemon = JSON.parse(localStorage.getItem("pokemon") || "[]");
+    currentPokemon = currentPokemon.filter(function( obj ) {
+        return obj.nickname !== nickname;
+    });
+    localStorage.setItem("pokemon", JSON.stringify(currentPokemon));
+    alert('Successfully released')
+  }
+
+  useEffect(() => {
+    releasePokemon() 
+  }, [])
   return (
+    <div className={cardClass}>
     <Link to={`/details/${id}`}>
-      <div className={cardClass}>
+      <div>
         <div className='number'>
-          <small>#{id}</small>
         </div>
         <img src={image} alt={name} />
         <div className='detail-wrapper'>
           <h3>{name}</h3>
+          <h4>{nickname?nickname:null}</h4>
           <div className='type-wrapper'>
           <ul className={type}>
         {type.map(({ type }) => (
@@ -19,10 +35,13 @@ const PokemonCard = ({ id, image, name, type, _callback }) => {
         ))}
       </ul>
       </div>
-   
         </div>
+       
       </div>
     </Link>
+    {canRelease?<button className='btn-action' onClick={}>Release</button>:null}
+    </div>
+    
   )
 }
 
