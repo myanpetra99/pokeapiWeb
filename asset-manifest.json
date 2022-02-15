@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pokeapiweb/static/css/main.199e5de7.css",
-    "main.js": "/pokeapiweb/static/js/main.a8afb04c.js",
-    "static/js/787.777c5223.chunk.js": "/pokeapiweb/static/js/787.777c5223.chunk.js",
-    "index.html": "/pokeapiweb/index.html",
-    "main.199e5de7.css.map": "/pokeapiweb/static/css/main.199e5de7.css.map",
-    "main.a8afb04c.js.map": "/pokeapiweb/static/js/main.a8afb04c.js.map",
-    "787.777c5223.chunk.js.map": "/pokeapiweb/static/js/787.777c5223.chunk.js.map"
+    "main.css": "/pokeapiWeb/static/css/main.199e5de7.css",
+    "main.js": "/pokeapiWeb/static/js/main.7df1854c.js",
+    "static/js/787.777c5223.chunk.js": "/pokeapiWeb/static/js/787.777c5223.chunk.js",
+    "index.html": "/pokeapiWeb/index.html",
+    "main.199e5de7.css.map": "/pokeapiWeb/static/css/main.199e5de7.css.map",
+    "main.7df1854c.js.map": "/pokeapiWeb/static/js/main.7df1854c.js.map",
+    "787.777c5223.chunk.js.map": "/pokeapiWeb/static/js/787.777c5223.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.199e5de7.css",
-    "static/js/main.a8afb04c.js"
+    "static/js/main.7df1854c.js"
   ]
 }
