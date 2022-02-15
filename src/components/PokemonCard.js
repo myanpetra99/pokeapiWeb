@@ -4,20 +4,20 @@ import { useEffect } from 'react'
 
 const PokemonCard = ({ id, image, name, type, nickname, canRelease, _callback }) => {
   const cardClass = type + ' thumb-container'
+  
 
-
+  
   function releasePokemon (nickname){
     let currentPokemon = JSON.parse(localStorage.getItem("pokemon") || "[]");
-    currentPokemon = currentPokemon.filter(function( obj ) {
-        return obj.nickname !== nickname;
-    });
+    currentPokemon = currentPokemon.filter(pokemon => pokemon.nickname !== nickname)
     localStorage.setItem("pokemon", JSON.stringify(currentPokemon));
-    alert('Successfully released')
+    alert("You have released " + nickname + " from your pokemon list!")
+    window.location.reload();
   }
 
-  useEffect(() => {
-    releasePokemon() 
-  }, [])
+
+
+
   return (
     <div className={cardClass}>
     <Link to={`/details/${id}`}>
@@ -27,7 +27,7 @@ const PokemonCard = ({ id, image, name, type, nickname, canRelease, _callback })
         <img src={image} alt={name} />
         <div className='detail-wrapper'>
           <h3>{name}</h3>
-          <h4>{nickname?nickname:null}</h4>
+          <p>{nickname}</p>
           <div className='type-wrapper'>
           <ul className={type}>
         {type.map(({ type }) => (
@@ -39,7 +39,7 @@ const PokemonCard = ({ id, image, name, type, nickname, canRelease, _callback })
        
       </div>
     </Link>
-    {canRelease?<button className='btn-action' onClick={}>Release</button>:null}
+    { canRelease ? <button className='btn-action' onClick={()=>{ releasePokemon(nickname) }}>Release</button>:null}
     </div>
     
   )

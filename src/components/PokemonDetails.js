@@ -23,14 +23,16 @@ const PokemonDetails = () => {
 
   function catchPokemon () {
     const localPokemon = JSON.parse(localStorage.getItem("pokemon") || "[]");
-  
     if(Math.random() < 0.5){
-     
+
       let pokemonName = prompt('Successfuly Caught! Give this pokemon a nickname')
+
       while (true){
+
         if(localPokemon.find(pokemon => pokemon.nickname === pokemonName)|| pokemonName === null){
           alert('You already have this pokemon'||'You must enter a nickname')
           pokemonName = prompt('Give this pokemon a different nickname!')
+
       }else{
         break
       }
@@ -57,8 +59,6 @@ const PokemonDetails = () => {
     setPokemonHeight(data.height)
     setCardClass(data.types+ ' pokemon-detail ')
   }
-
-  
 
   useEffect(() => {
     getPokemon()
